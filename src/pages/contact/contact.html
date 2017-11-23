@@ -1,17 +1,12 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Contact
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+<ion-content padding-horizontal>
+  <h1 padding><strong>Your<br>Recommendations</strong></h1>
+  <h6 style="font-weight:400" padding-bottom padding-horizontal>Based on your food history, we have prepared the following recommendations</h6>
+  <ng-container *ngFor="let rec of recommendations">
+    <ion-card no-padding>
+      <ion-card-content padding-vertical>
+        <ion-icon name="arrow-down" float-right></ion-icon>
+        <h5 style="font-weight:400">{{rec.description}}</h5>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
 </ion-content>

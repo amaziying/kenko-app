@@ -1,17 +1,17 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content padding-horizontal>
+  <h1 padding><strong>Good Afternoon, <br>Susan.</strong></h1>
+  <div padding>
+    <h4 class="side-by-side" (click)="toggleFavourites(false)" [ngClass]="{'selected': !showFavourites}">Recommended</h4>
+    <h4 margin-left class="side-by-side" (click)="toggleFavourites(true)" [ngClass]="{'selected': showFavourites}">Favourites</h4>
+  </div>
+  <ng-container *ngFor="let rec of recommendations">
+    <ion-card no-padding *ngIf="(showFavourites && rec.liked) || !showFavourites">
+      <ion-card-content padding-vertical>
+        <div (click)="like(rec)" float-right><ion-icon *ngIf="rec.liked" name="heart"></ion-icon><ion-icon *ngIf="!rec.liked" name="heart-outline"></ion-icon></div>
+        <p>{{rec.type}}</p>
+        <h1>{{rec.title}}</h1>
+        <button ion-button color="dark" outline round small>Read More</button>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
 </ion-content>
