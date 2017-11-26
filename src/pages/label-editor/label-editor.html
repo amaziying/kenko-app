@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Food Tracking
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <img style="width:100px;" item-start src="{{image.src}}">
+      <ion-label floating>Caption</ion-label>
+      <ion-input [(ngModel)]="image.caption" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="tempLabel" type="text" placeholder="Add a tag"></ion-input>
+      <button (click)="addLabel()" clear ion-button icon-only item-end color="dark">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-item>
+    <ion-item *ngFor="let label of image.labels; let i = index;">
+      <ion-label>{{label.description}}</ion-label>
+      <ion-select [(ngModel)]="label.portionSize" item-end>
+        <ion-option value="SM">Small</ion-option>
+        <ion-option value="MD">Medium</ion-option>
+        <ion-option value="LG">Large</ion-option>
+      </ion-select>
+      <button (click)="removeLabel(i)" clear ion-button icon-only item-end color="dark">
+        <ion-icon name="remove-circle"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+  <button (click)="save()" ion-button icon-left margin-left>
+    <ion-icon name="checkmark-outline"></ion-icon>
+    Save
+  </button>
+
+</ion-content>

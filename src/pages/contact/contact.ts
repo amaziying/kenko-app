@@ -11,13 +11,17 @@ export class ContactPage {
   constructor(public navCtrl: NavController) {
   	this.recommendations = [
   		{
-  			description: "Substitute white bread with whole wheat bread",
+  			description: "Substitute pancakes with carrot cakes",
   			link: "xyz.com"
   		},
   		{
   			description: "Reduce consumption of fruit juices and smoothies",
   			link: "xyz.com"
-  		}
+  		},
+      {
+        description: "Substitute grapefruit with apricot and apple fruit strips",
+        link: "xyz.com"
+      }
   	]
   }
 

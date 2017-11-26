@@ -7,36 +7,33 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-	recommendations: Array<{ title: string, type: string, liked: boolean, link: string }>;
-	like: Function;
-	toggleFavourites: Function;
-	showFavourites: Boolean;
+  recommendations: Array<{ title: string, type: string, liked: boolean, link: string }>;
+  showFavourites: Boolean;
 
   constructor(public navCtrl: NavController) {
-  	let that = this;
-  	this.recommendations = [
-  		{
-  			title: "What is diabetes?",
-  			type: "Article from Diabetes Canada",
-  			liked: false,
-  			link: "xyz.com"
-  		},
-  		{
-  			title: "Roasting bell peppers",
-  			type: "Recipe",
-  			liked: false,
-  			link: "xyz.com"
-  		}
-  	];
-  	this.showFavourites = false;
+    this.recommendations = [
+      {
+        title: "What is Prediabetes?",
+        type: "Article from Diabetes Canada",
+        liked: false,
+        link: "http://www.diabetes.ca/about-diabetes/prediabetes"
+      },
+      {
+        title: "Living with Prediabetes",
+        type: "Article from Diabetes Canada",
+        liked: false,
+        link: "http://www.diabetes.ca/diabetes-and-you/living-with-prediabetes"
+      }
+    ];
+    this.showFavourites = false;
+  }
 
-  	this.toggleFavourites = function(showFavourites) {
-  		that.showFavourites = showFavourites;
-  	}
+  toggleFavourites(showFavourites: Boolean) {
+    this.showFavourites = showFavourites;
+  }
 
-  	this.like = function(rec) {
-  		rec.liked = !rec.liked;
-  	}
+  like(rec: { title: string, type: string, liked: boolean, link: string }) {
+    rec.liked = !rec.liked;
   }
 
 }
