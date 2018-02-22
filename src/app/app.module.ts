@@ -9,10 +9,12 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LabelEditor } from '../pages/label-editor/labelEditor';
 
-import { HTTP } from '@ionic-native/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Camera } from '@ionic-native/camera';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { TestServiceProvider } from '../providers/test-service/test-service';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -38,10 +41,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   providers: [
     Camera,
-    HTTP,
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    InAppBrowser,
+    HttpClient,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    TestServiceProvider
   ]
 })
 export class AppModule {}

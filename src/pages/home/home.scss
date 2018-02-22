@@ -6,4 +6,27 @@ page-home {
 	.side-by-side {
 		display: inline-block;
 	}
+	.icon {
+		color: #6096ef;
+	}
+	.article-title {
+		font-size: 18px;
+		font-weight: 500;
+	}
+	.action-text {
+		color: #6096ef;
+		font-size: 13px;
+	}
+	.color-dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		display: inline-block;
+	}
+	.green {
+		background-color: #80dc8e;
+	}
+	.orange {
+		background-color: #f8b87e;
+	}
 }

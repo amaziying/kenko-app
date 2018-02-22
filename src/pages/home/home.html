@@ -1,16 +1,42 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title class="header">
+      Home
+    </ion-title>
+  </ion-navbar>
+</ion-header>
 <ion-content padding-horizontal>
-  <h1 padding><strong>Good Afternoon, <br>Susan.</strong></h1>
-  <div padding>
-    <h4 class="side-by-side" (click)="toggleFavourites(false)" [ngClass]="{'selected': !showFavourites}">Recommended</h4>
-    <h4 margin-left class="side-by-side" (click)="toggleFavourites(true)" [ngClass]="{'selected': showFavourites}">Favourites</h4>
-  </div>
-  <ng-container *ngFor="let rec of recommendations">
-    <ion-card no-padding *ngIf="(showFavourites && rec.liked) || !showFavourites">
+
+  <h3 style="padding-top:10px;" padding-horizontal>Top articles for you</h3>
+  <ng-container *ngFor="let rec of articles">
+    <ion-card *ngIf="(showFavourites && rec.liked) || !showFavourites">
       <ion-card-content padding-vertical>
-        <div (click)="like(rec)" float-right><ion-icon *ngIf="rec.liked" name="heart"></ion-icon><ion-icon *ngIf="!rec.liked" name="heart-outline"></ion-icon></div>
-        <p>{{rec.type}}</p>
-        <h1>{{rec.title}}</h1>
-        <button ion-button color="dark" outline round small>Read More</button>
+        <div (click)="like(rec)" float-right style="text-align:center; width: 70px">
+          <ion-icon *ngIf="rec.liked" class="icon" name="heart"></ion-icon>
+          <ion-icon *ngIf="!rec.liked" class="icon" name="heart-outline"></ion-icon>
+          <div class="action-text">{{rec.liked ? 'Unfavourite' : 'Favourite'}}</div>
+        </div>
+        <p style="text-transform:uppercase; font-size: 12px;">{{rec.source}}</p>
+        <div no-padding (click)="openLink(rec.link)" class="article-title">{{rec.title}}</div>
+        <p>{{rec.readTime}} min read</p>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+
+  <h3 padding-horizontal>Recommendations</h3>
+  <ng-container *ngFor="let rec of recommendations; let i = index;">
+    <ion-card *ngIf="(showFavourites && rec.liked) || !showFavourites">
+      <ion-card-content padding-vertical>
+        <p style="font-size: 12px;">
+          <span class="color-dot" [ngClass]="{'green': rec.type === 'SERVING SIZE', 'orange': rec.type === 'SUBSTITUTION'}"></span>
+          {{rec.type}}
+        </p>
+        <div style="padding-bottom: 5px;" (click)="openLink(rec.link)" class="article-title">{{rec.text}}</div>
+        <div *ngIf="isGoal(i)" style="font-size: 15px;" class="action-text">Current goal</div>
+        <div *ngIf="!isGoal(i)" style="font-size: 15px;">
+          <div (click)="setGoal(i)" style="display: inline-block; font-size: 15px;" class="action-text">Set as goal</div>
+          <p style="display: inline-block; margin-left: 15px;">Dismiss</p>
+        </div>
       </ion-card-content>
     </ion-card>
   </ng-container>
