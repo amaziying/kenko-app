@@ -1,0 +1,32 @@
+<!--
+  Generated template for the AddMealPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  
+
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <button start ion-button icon-only (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Add a meal</ion-title>
+    <ion-buttons end>
+      <button end ion-button icon-only (click)="save()">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-label floating>Meal name</ion-label>
+  <ion-input [(ngModel)]="title" type="text"></ion-input>
+</ion-content>

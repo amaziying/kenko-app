@@ -3,11 +3,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
+import { FavouritePage } from '../pages/favourite/favourite';
+import { TrackPage } from '../pages/track/track';
+import { LogPage } from '../pages/log/log';
+import { GoalPage } from '../pages/goal/goal';
+import { AddMealPage } from '../pages/add-meal/add-meal';
+import { AddIngredientsPage } from '../pages/add-ingredients/add-ingredients';
+import { AddServingPage } from '../pages/add-serving/add-serving';
+
 import { TabsPage } from '../pages/tabs/tabs';
-import { LabelEditor } from '../pages/label-editor/labelEditor';
+
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Camera } from '@ionic-native/camera';
@@ -19,11 +25,15 @@ import { TestServiceProvider } from '../providers/test-service/test-service';
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
+    FavouritePage,
+    TrackPage,
+    LogPage,
+    GoalPage,
     TabsPage,
-    LabelEditor
+    AddMealPage,
+    AddIngredientsPage,
+    AddServingPage
   ],
   imports: [
     BrowserModule,
@@ -33,11 +43,15 @@ import { TestServiceProvider } from '../providers/test-service/test-service';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
+    FavouritePage,
+    TrackPage,
+    LogPage,
+    GoalPage,
     TabsPage,
-    LabelEditor
+    AddMealPage,
+    AddIngredientsPage,
+    AddServingPage
   ],
   providers: [
     Camera,
