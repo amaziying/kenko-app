@@ -21,6 +21,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { TestServiceProvider } from '../providers/test-service/test-service';
+import { MealEditProvider } from '../providers/meal-edit/meal-edit';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { TestServiceProvider } from '../providers/test-service/test-service';
     InAppBrowser,
     HttpClient,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    TestServiceProvider
+    TestServiceProvider,
+    MealEditProvider
   ]
 })
 export class AppModule {}

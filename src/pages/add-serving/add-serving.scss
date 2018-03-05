@@ -1,3 +1,21 @@
 page-add-serving {
+	.serving-question {
+		font-size: 16px;
+		.help-link {
+			color: rgb(96, 150, 239);
+		}
+	}
 
+	.serving-container {
+		border-bottom: 1px solid rgb(114, 114, 114);
+		width: 100%;
+
+		.serving-input {
+			width: 80%;
+			display: inline-block;
+		}
+		.serving-text {
+			display: inline-block;
+		}
+	}
 }

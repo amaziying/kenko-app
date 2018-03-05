@@ -20,13 +20,18 @@
       </button>
     </ion-buttons>
   </ion-toolbar>
-
-  
-
 </ion-header>
 
 
 <ion-content padding>
-  <ion-label floating>Meal name</ion-label>
-  <ion-input [(ngModel)]="title" type="text"></ion-input>
+  <div class="meal-photo">
+    <ion-icon class="camera-icon" name="camera"></ion-icon>
+    <div class="camera-text">
+      Add a photo (optional)
+    </div>
+  </div>
+  <div class="meal-name">
+    <ion-label stacked>Meal Name</ion-label>
+    <ion-input [(ngModel)]="title" type="text" placeholder="Coconut Chicken..."></ion-input>
+  </div>
 </ion-content>

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController } from 'ionic-angular';
+import { App, NavParams, ViewController } from 'ionic-angular';
 
+import { MealEditProvider } from '../../providers/meal-edit/meal-edit';
+import { AddIngredientsPage } from '../add-ingredients/add-ingredients';
 /**
  * Generated class for the AddMealPage page.
  *
@@ -13,25 +15,21 @@ import { NavParams, ViewController } from 'ionic-angular';
   templateUrl: 'add-meal.html',
 })
 export class AddMealPage {
-  meal: { image: string, title: string, ingredients: Array<{name: string, serving: number}>};
   title: string;
   image: string;
 
-  constructor(public viewCtrl: ViewController, public navParams: NavParams) {
-    this.meal = navParams.get('meal');
-
-    this.title = this.meal.title;
-    this.image = this.meal.image;
+  constructor(public viewCtrl: ViewController, public navParams: NavParams, public app: App, public mealEdit: MealEditProvider) {
+    this.title = mealEdit.title
+    this.image = mealEdit.image
   }
 
   close() {
-    this.viewCtrl.dismiss({ save: false});
+    this.viewCtrl.dismiss();
   }
 
   save() {
-    this.meal.image = this.image;
-    this.meal.title = this.title;
-    this.viewCtrl.dismiss({ save: true });
+    this.mealEdit.addMeal(this.title, this.image)
+    this.app.getRootNav().push(AddIngredientsPage)
   }
 
 }

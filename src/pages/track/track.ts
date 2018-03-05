@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { AddMealPage } from '../add-meal/add-meal';
-import { HomePage } from '../home/home';
 
 
 /**
@@ -19,22 +18,9 @@ import { HomePage } from '../home/home';
 export class TrackPage {
   meal: { image: string, ingredients: Array<{name: string, serving: number}>, title: string};
 
-  constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams) {
-    this.meal = {
-      image: '',
-      title: '',
-      ingredients: []
-    };
+  constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams) {}
 
-    let modal = this.modalCtrl.create(AddMealPage, { meal: this.meal });
-    modal.onDidDismiss(data => {
-      if (data.save) {
-
-      } else {
-        this.navCtrl.parent.select(0);
-      }
-    });
-    modal.present();    
+  ionViewDidEnter(){
+    this.navCtrl.push(AddMealPage)
   }
-
 }
