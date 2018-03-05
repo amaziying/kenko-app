@@ -22,6 +22,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { TestServiceProvider } from '../providers/test-service/test-service';
 import { MealEditProvider } from '../providers/meal-edit/meal-edit';
+import { LogProvider } from '../providers/log/log';
+import { ArticlesProvider } from '../providers/articles/articles';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { MealEditProvider } from '../providers/meal-edit/meal-edit';
     HttpClient,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TestServiceProvider,
-    MealEditProvider
+    MealEditProvider,
+    LogProvider,
+    ArticlesProvider
   ]
 })
 export class AppModule {}

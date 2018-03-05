@@ -8,8 +8,8 @@
 <ion-content padding-horizontal>
 
   <h3 style="padding-top:10px;" padding-horizontal>Top articles for you</h3>
-  <ng-container *ngFor="let rec of articles">
-    <ion-card *ngIf="(showFavourites && rec.liked) || !showFavourites">
+  <ng-container *ngFor="let rec of articles.list">
+    <ion-card>
       <ion-card-content padding-vertical>
         <div (click)="like(rec)" float-right style="text-align:center; width: 70px">
           <ion-icon *ngIf="rec.liked" class="icon" name="heart"></ion-icon>
@@ -24,8 +24,8 @@
   </ng-container>
 
   <h3 padding-horizontal>Recommendations</h3>
-  <ng-container *ngFor="let rec of recommendations; let i = index;">
-    <ion-card *ngIf="(showFavourites && rec.liked) || !showFavourites">
+  <ng-container *ngFor="let rec of recommendations; let i = index">
+    <ion-card>
       <ion-card-content padding-vertical>
         <p style="font-size: 12px;">
           <span class="color-dot" [ngClass]="{'green': rec.type === 'SERVING SIZE', 'orange': rec.type === 'SUBSTITUTION'}"></span>

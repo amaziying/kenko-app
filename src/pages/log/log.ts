@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { LogProvider } from '../../providers/log/log';
+
 /**
  * Generated class for the LogPage page.
  *
@@ -14,11 +16,6 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class LogPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public log: LogProvider) {
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LogPage');
-  }
-
 }

@@ -7,12 +7,19 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title class="header">Log</ion-title>
+    <ion-title class="header">Logged Meals</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+	<ng-container *ngFor="let meal of log.pastMeals">
+    <ion-card>
+      <ion-card-content padding-vertical>
+        <p style="text-transform:uppercase; font-size: 12px;">{{meal.createdAt}}</p>
+        <div no-padding class="article-title">{{meal.title}}</div>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
 </ion-content>

@@ -33,6 +33,7 @@ export class AddServingPage {
   save() {
     const ingredient = this.mealEdit.getIngredient()
     ingredient.serving = parseInt(this.serving)
+
     this.mealEdit.currentIngredient = ''
     this.viewCtrl.dismiss();
   }

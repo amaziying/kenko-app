@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { App, NavParams, ViewController } from 'ionic-angular';
 
 import { MealEditProvider } from '../../providers/meal-edit/meal-edit';
+import { LogProvider } from '../../providers/log/log';
 import { AddServingPage } from '../add-serving/add-serving';
 
 import data from '../../data/food';
@@ -17,18 +18,17 @@ import * as _ from 'lodash';
 
 @Component({
   selector: 'page-add-ingredients',
-  templateUrl: 'add-ingredients.html',
+  templateUrl: 'add-ingredients.html'
 })
 export class AddIngredientsPage {
   searchInput: string = ''
   items: Array<string> = []
 
-  constructor(public viewCtrl: ViewController, public navParams: NavParams, public app: App, public mealEdit: MealEditProvider) {
+  constructor(public viewCtrl: ViewController, public app: App, public mealEdit: MealEditProvider, public log: LogProvider) {
     this.getItems('')
   }
 
   initializeItems() {
-    console.log(data)
     this.items = data
   }
 
@@ -64,6 +64,11 @@ export class AddIngredientsPage {
   }
 
   save() {
+    const { title, image, ingredients } = this.mealEdit
+
+    this.log.saveMeal(title, image, ingredients)
+    this.mealEdit.resetState()
+
     this.viewCtrl.dismiss();
     this.app.getRootNav().getActiveChildNav().select(3)
   }

@@ -19,17 +19,24 @@ export class AddMealPage {
   image: string;
 
   constructor(public viewCtrl: ViewController, public navParams: NavParams, public app: App, public mealEdit: MealEditProvider) {
-    this.title = mealEdit.title
-    this.image = mealEdit.image
+    
+  }
+
+  ionViewDidEnter() {
+    this.title = this.mealEdit.title
+    this.image = this.mealEdit.image
   }
 
   close() {
     this.viewCtrl.dismiss();
+    this.app.getRootNav().getActiveChildNav().select(0)
   }
 
   save() {
-    this.mealEdit.addMeal(this.title, this.image)
-    this.app.getRootNav().push(AddIngredientsPage)
+    if (this.title) {
+      this.mealEdit.addMeal(this.title, this.image)
+      this.app.getRootNav().push(AddIngredientsPage)
+    }
   }
 
 }

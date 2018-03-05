@@ -1,38 +1,18 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { TestServiceProvider } from '../../providers/test-service/test-service';
+import { ArticlesProvider } from '../../providers/articles/articles';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html',
-  providers: [TestServiceProvider]
+  templateUrl: 'home.html'
 })
 export class HomePage {
 
   recommendations: Array<{ text: string, type: string, image: string }>;
-  articles: Array<{ readTime: number, title: string, source: string, liked: boolean, link: string }>;
-  showFavourites: Boolean;
-  data: Object;
   goal: number;
 
-  constructor(public navCtrl: NavController, public iab: InAppBrowser, public test: TestServiceProvider) {
-    this.articles = [
-      {
-        title: "What is Prediabetes?",
-        source: "Diabetes Canada",
-        liked: false,
-        link: "http://www.diabetes.ca/about-diabetes/prediabetes",
-        readTime: 3,
-      },
-      {
-        title: "Living with Prediabetes",
-        source: "Diabetes Canada",
-        liked: false,
-        link: "http://www.diabetes.ca/diabetes-and-you/living-with-prediabetes",
-        readTime: 6,
-      }
-    ];
+  constructor(public navCtrl: NavController, public iab: InAppBrowser, public articles: ArticlesProvider) {
     this.recommendations = [
       {
         text: "Consume more servings of vegetables",
@@ -46,14 +26,6 @@ export class HomePage {
       },
     ];
     this.goal = 0;
-    this.showFavourites = false;
-    this.test.load().then(data => {
-      this.data = data;
-    });
-  }
-
-  toggleFavourites(showFavourites: Boolean) {
-    this.showFavourites = showFavourites;
   }
 
   openLink(link: string) {
