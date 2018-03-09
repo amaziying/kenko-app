@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, NavParams, ViewController } from 'ionic-angular';
+import { App, ViewController } from 'ionic-angular';
 
 import { MealEditProvider } from '../../providers/meal-edit/meal-edit';
 
@@ -18,7 +18,7 @@ import { MealEditProvider } from '../../providers/meal-edit/meal-edit';
 export class AddServingPage {
   serving: string;
 
-  constructor(public viewCtrl: ViewController, public navParams: NavParams, public app: App, public mealEdit: MealEditProvider) {
+  constructor(public viewCtrl: ViewController, public app: App, public mealEdit: MealEditProvider) {
     const ingredient = mealEdit.getIngredient()
     const serving = ingredient && ingredient.serving
     this.serving = serving ? serving.toString() : ''
@@ -31,11 +31,14 @@ export class AddServingPage {
   }
 
   save() {
-    const ingredient = this.mealEdit.getIngredient()
-    ingredient.serving = parseInt(this.serving)
+    if (this.serving) {
+      const ingredient = this.mealEdit.getIngredient()
+      ingredient.serving = parseFloat(this.serving)
 
-    this.mealEdit.currentIngredient = ''
-    this.viewCtrl.dismiss();
+      this.mealEdit.currentIngredient = ''
+      this.viewCtrl.dismiss()
+    }
+    
   }
 
 }

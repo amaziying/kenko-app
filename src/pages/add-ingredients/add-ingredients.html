@@ -13,7 +13,7 @@
         <ion-icon name="close"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>{{searchInput ? 'Add Food' : 'Ingredients'}}</ion-title>
+    <ion-title>{{searchInput ? 'Add Food' : capitalizeFirstLetter(mealEdit.title) }}</ion-title>
     <ion-buttons end>
       <button end ion-button icon-only (click)="save()">
         <ion-icon name="checkmark"></ion-icon>

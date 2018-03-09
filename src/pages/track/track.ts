@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 
 import { AddMealPage } from '../add-meal/add-meal';
 
@@ -18,7 +18,7 @@ import { AddMealPage } from '../add-meal/add-meal';
 export class TrackPage {
   meal: { image: string, ingredients: Array<{name: string, serving: number}>, title: string};
 
-  constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController) {}
 
   ionViewDidEnter(){
     this.navCtrl.push(AddMealPage)

@@ -7,19 +7,29 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title class="header">Logged Meals</ion-title>
+    <ion-title class="header">Meals</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-	<ng-container *ngFor="let meal of log.pastMeals">
-    <ion-card>
-      <ion-card-content padding-vertical>
-        <p style="text-transform:uppercase; font-size: 12px;">{{meal.createdAt}}</p>
-        <div no-padding class="article-title">{{meal.title}}</div>
-      </ion-card-content>
-    </ion-card>
+	<ng-container *ngFor="let day of log.pastMeals; let i = index;">
+		<h3 padding-horizontal *ngIf="i === 0">Today</h3>
+    <h3 padding-horizontal *ngIf="i !== 0">{{meal.date}}</h3>
+    <ng-container *ngFor="let session of sessions">
+      <ion-card class="log-card" (click)="addLog(session, day.date)" *ngIf="day[session]">
+        <ion-card-content padding-vertical>
+          <h2 no-padding class="article-title"><b>{{capitalizeFirstLetter(day[session].title)}}</b></h2>
+          <div>{{day[session].ingredients.length}} food(s) logged</div>
+        </ion-card-content>
+      </ion-card>
+      <ion-card class="log-card" (click)="addLog(session, day.date)" *ngIf="!day[session]">
+        <ion-card-content class="add-card">
+          <ion-icon style="float:right; font-size: 20px;" color="primary" name="add-circle"></ion-icon>
+          <h2 no-padding class="article-title">Add {{session}}</h2>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
   </ng-container>
 </ion-content>

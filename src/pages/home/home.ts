@@ -8,24 +8,9 @@ import { ArticlesProvider } from '../../providers/articles/articles';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-  recommendations: Array<{ text: string, type: string, image: string }>;
-  goal: number;
+  showFavourites = false
 
   constructor(public navCtrl: NavController, public iab: InAppBrowser, public articles: ArticlesProvider) {
-    this.recommendations = [
-      {
-        text: "Consume more servings of vegetables",
-        type: "SERVING SIZE",
-        image: "",
-      },
-      {
-        text: "Substitute pancakes with carrot cake",
-        type: "SUBSTITUTION",
-        image: "",
-      },
-    ];
-    this.goal = 0;
   }
 
   openLink(link: string) {
@@ -36,11 +21,8 @@ export class HomePage {
     rec.liked = !rec.liked;
   }
 
-  isGoal(idx: number) {
-    return this.goal == idx;
+  toggleFavourites(show) {
+    this.showFavourites = show
   }
 
-  setGoal(idx: number) {
-    this.goal = idx;
-  }
 }

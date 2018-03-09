@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { ArticlesProvider } from '../../providers/articles/articles';
@@ -19,7 +19,7 @@ import { ArticlesProvider } from '../../providers/articles/articles';
 })
 export class FavouritePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public iab: InAppBrowser, public articles: ArticlesProvider) {
+  constructor(public navCtrl: NavController, public iab: InAppBrowser, public articles: ArticlesProvider) {
   }
 
   openLink(link: string) {

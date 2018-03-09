@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 
+import { Meal } from '../../models/Meal'
+
 /*
   Generated class for the MealEditProvider provider.
 
@@ -10,25 +12,23 @@ import * as _ from 'lodash';
 */
 @Injectable()
 export class MealEditProvider {
-
-  title: string
-  image: string
-  ingredients: Array<{name: string, serving: number}>
+  date: string = ''
+  title: string = ''
+  image: string = ''
+  ingredients: Array<{name: string, serving: number}> = []
 
   currentIngredient: string
 
-  constructor(public http: HttpClient) {
-    this.resetState()
+  constructor(public http: HttpClient) {}
+
+  resetState(date, session, image = '', ingredients = []) {
+    this.date = date
+    this.title = session
+    this.image = image
+    this.ingredients = ingredients
   }
 
-  resetState() {
-    this.title = ''
-    this.image = ''
-    this.ingredients = []
-  }
-
-  addMeal(title, image) {
-    this.title = title
+  addImage(image) {
     this.image = image
   }
 
@@ -48,10 +48,6 @@ export class MealEditProvider {
     return _.find(this.ingredients, (ingredient) => ingredient.name === this.currentIngredient)
   }
 
-  setCurrentIngredient(name) {
-    this.currentIngredient = name
-  }
-
   updateServing(serving) {
     const ingredient = _.find(this.ingredients, (ingredient) => ingredient.name === this.currentIngredient)
     if (ingredient) {
@@ -59,6 +55,12 @@ export class MealEditProvider {
       return true
     }
     return false
+  }
+
+  getMeal() {
+    const { title, image, ingredients } = this
+    const meal: Meal = { title, image, ingredients }
+    return meal
   }
 
 }

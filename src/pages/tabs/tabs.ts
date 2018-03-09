@@ -12,10 +12,8 @@ import { GoalPage } from '../goal/goal';
 export class TabsPage {
 
   homeTab = HomePage;
-  favouriteTab = FavouritePage;
-  trackTab = TrackPage;
+  recommendationsTab = FavouritePage;
   logTab = LogPage;
-  goalTab = GoalPage;
 
   constructor() {
 

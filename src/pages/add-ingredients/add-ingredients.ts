@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, NavParams, ViewController } from 'ionic-angular';
+import { App, ViewController } from 'ionic-angular';
 
 import { MealEditProvider } from '../../providers/meal-edit/meal-edit';
 import { LogProvider } from '../../providers/log/log';
@@ -59,18 +59,17 @@ export class AddIngredientsPage {
     this.app.getRootNav().push(AddServingPage)
   }
 
+  capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   close() {
     this.viewCtrl.dismiss();
   }
 
   save() {
-    const { title, image, ingredients } = this.mealEdit
-
-    this.log.saveMeal(title, image, ingredients)
-    this.mealEdit.resetState()
-
+    this.log.saveMeal(this.mealEdit.date, this.mealEdit.title, this.mealEdit.getMeal())
     this.viewCtrl.dismiss();
-    this.app.getRootNav().getActiveChildNav().select(3)
   }
 
 }
