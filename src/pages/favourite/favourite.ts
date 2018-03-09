@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
-import { ArticlesProvider } from '../../providers/articles/articles';
-
-
+import { RecommendationProvider } from '../../providers/recommendation/recommendation';
 
 /**
  * Generated class for the FavouritePage page.
@@ -19,7 +17,13 @@ import { ArticlesProvider } from '../../providers/articles/articles';
 })
 export class FavouritePage {
 
-  constructor(public navCtrl: NavController, public iab: InAppBrowser, public articles: ArticlesProvider) {
+  reasonMapping = {
+    'veg': 'Because you should have more vegetables',
+    'meat': 'Because you should have more protein'
+  }
+
+  constructor(public navCtrl: NavController, public iab: InAppBrowser, public recs: RecommendationProvider) {
+    console.log(recs.liked)
   }
 
   openLink(link: string) {

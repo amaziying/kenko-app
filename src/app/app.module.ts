@@ -24,6 +24,7 @@ import { TestServiceProvider } from '../providers/test-service/test-service';
 import { MealEditProvider } from '../providers/meal-edit/meal-edit';
 import { LogProvider } from '../providers/log/log';
 import { ArticlesProvider } from '../providers/articles/articles';
+import { RecommendationProvider } from '../providers/recommendation/recommendation';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { ArticlesProvider } from '../providers/articles/articles';
     TestServiceProvider,
     MealEditProvider,
     LogProvider,
-    ArticlesProvider
+    ArticlesProvider,
+    RecommendationProvider
   ]
 })
 export class AppModule {}

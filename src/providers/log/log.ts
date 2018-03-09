@@ -38,10 +38,12 @@ export class LogProvider {
 
   today() {
     const now = new Date()
+    const month = (now.getMonth() + 1).toString()
+    const day = now.getDate().toString()
     return [
       now.getFullYear().toString(),
-      (now.getMonth() + 1).toString().padStart(2, '0'),
-      now.getDate().toString().padStart(2, '0')
+      month.length === 1 ? '0' + month : month,
+      day.length === 1 ? '0' + day : day
     ].join('-')
   }
 

@@ -29,5 +29,11 @@ page-favourite {
 	.orange {
 		background-color: #f8b87e;
 	}
+	.item-ios ion-avatar ion-img, .item-ios ion-avatar img {
+		width:100% !important;  
+		height : 100% !important;  
+		max-width: 100px !important;  //any size
+		max-height: 100px !important; //any size 
+	}
 
 }

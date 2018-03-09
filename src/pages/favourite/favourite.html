@@ -15,17 +15,28 @@
 
 <ion-content padding>
 
-	<ng-container *ngFor="let rec of articles.list">
-    <ion-card *ngIf="rec.liked">
+  <ng-container *ngFor="let rec of recs.getRecommendations(); let i = index">
+    <ion-card>
       <ion-card-content padding-vertical>
-        <div (click)="like(rec)" float-right style="text-align:center; width: 70px">
-          <ion-icon *ngIf="rec.liked" class="icon" name="heart"></ion-icon>
-          <ion-icon *ngIf="!rec.liked" class="icon" name="heart-outline"></ion-icon>
-          <div class="action-text">{{rec.liked ? 'Unfavourite' : 'Favourite'}}</div>
+        <ion-item (click)="openLink(rec.url)">
+          <ion-avatar style="width: 60px; height: 60px;" item-start>
+            <img src={{rec[0].image}}>
+          </ion-avatar>
+          <div class="article-title">{{rec[0].label}}</div>
+        </ion-item>
+        <p padding-horizontal style="font-size: 12px;">{{reasonMapping[rec[0].reason]}}</p>
+        <div>
+          <button (click)="recs.like(rec[0].label)" small ion-button icon-start clear>
+            <ion-icon *ngIf="recs.liked.has(rec[0].label)" ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon>
+            <ion-icon *ngIf="!recs.liked.has(rec[0].label)" ios="ios-thumbs-up-outline" md="md-thumbs-up"></ion-icon>
+            {{recs.liked.has(rec[0].label) ? 'Liked' : 'Like'}}
+          </button>
+          <button color="dismiss" (click)="recs.dislike(rec[0].label)" small ion-button icon-start clear>
+            <ion-icon style="color:#858585" ios="ios-thumbs-down-outline" md="md-thumbs-up"></ion-icon>
+            Try another
+          </button>
         </div>
-        <p style="text-transform:uppercase; font-size: 12px;">{{rec.source}}</p>
-        <div no-padding (click)="openLink(rec.link)" class="article-title">{{rec.title}}</div>
-        <p>{{rec.readTime}} min read</p>
+        
       </ion-card-content>
     </ion-card>
   </ng-container>
