@@ -5,10 +5,7 @@ import { MyApp } from './app.component';
 
 import { HomePage } from '../pages/home/home';
 import { FavouritePage } from '../pages/favourite/favourite';
-import { TrackPage } from '../pages/track/track';
 import { LogPage } from '../pages/log/log';
-import { GoalPage } from '../pages/goal/goal';
-import { AddMealPage } from '../pages/add-meal/add-meal';
 import { AddIngredientsPage } from '../pages/add-ingredients/add-ingredients';
 import { AddServingPage } from '../pages/add-serving/add-serving';
 
@@ -20,22 +17,21 @@ import { Camera } from '@ionic-native/camera';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { UniqueDeviceID } from '@ionic-native/unique-device-id';
 import { TestServiceProvider } from '../providers/test-service/test-service';
 import { MealEditProvider } from '../providers/meal-edit/meal-edit';
 import { LogProvider } from '../providers/log/log';
 import { ArticlesProvider } from '../providers/articles/articles';
 import { RecommendationProvider } from '../providers/recommendation/recommendation';
+import { UserProvider } from '../providers/user/user';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     FavouritePage,
-    TrackPage,
     LogPage,
-    GoalPage,
     TabsPage,
-    AddMealPage,
     AddIngredientsPage,
     AddServingPage
   ],
@@ -49,11 +45,8 @@ import { RecommendationProvider } from '../providers/recommendation/recommendati
     MyApp,
     HomePage,
     FavouritePage,
-    TrackPage,
     LogPage,
-    GoalPage,
     TabsPage,
-    AddMealPage,
     AddIngredientsPage,
     AddServingPage
   ],
@@ -63,12 +56,14 @@ import { RecommendationProvider } from '../providers/recommendation/recommendati
     SplashScreen,
     InAppBrowser,
     HttpClient,
+    UniqueDeviceID,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TestServiceProvider,
     MealEditProvider,
     LogProvider,
     ArticlesProvider,
-    RecommendationProvider
+    RecommendationProvider,
+    UserProvider
   ]
 })
 export class AppModule {}

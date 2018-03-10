@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 
@@ -19,7 +18,7 @@ export class MealEditProvider {
 
   currentIngredient: string
 
-  constructor(public http: HttpClient) {}
+  constructor() {}
 
   resetState(date, session, image = '', ingredients = []) {
     this.date = date

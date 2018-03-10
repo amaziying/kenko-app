@@ -160,8 +160,6 @@ export class RecommendationProvider {
       .groupBy('reason')
       .values()
       .value()
-
-    console.log(this.recommendations)
   }
 
   dislike(label) {
@@ -176,12 +174,19 @@ export class RecommendationProvider {
     }
   }
 
-  getRecommendations() {
-    return _(recommendations)
-      .filter(rec => !this.disliked.has(rec.label))
-      .groupBy('reason')
-      .values()
-      .value()
+  getRecommendations(showFavourites) {
+    if (showFavourites) {
+      return _(recommendations)
+        .filter(rec => this.liked.has(rec.label))
+        .map(rec => [rec])
+        .value()
+    } else {
+      return _(recommendations)
+        .filter(rec => !this.disliked.has(rec.label))
+        .groupBy('reason')
+        .values()
+        .value() 
+    }
   }
 
 }

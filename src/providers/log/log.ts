@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 
 import { Meal } from '../../models/Meal'
+import { UserProvider} from '../../providers/user/user'
 
 /*
   Generated class for the LogProvider provider.
@@ -21,7 +22,7 @@ export class LogProvider {
     date: string
   }> = []
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, public user: UserProvider) {
     this.addToday()
   }
 
@@ -53,7 +54,9 @@ export class LogProvider {
     if (!day) {
       return false
     }
+
     day[session] = meal
+    this.http.post('/api/log/' + this.user.uuid, day)
     return true
   }
 

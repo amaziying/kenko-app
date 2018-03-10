@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
-import { LabelEditor } from '../label-editor/labelEditor';
 
 @Component({
   selector: 'page-about',
@@ -22,8 +21,6 @@ export class AboutPage {
 
   openModal(i) {
     let image = this.images[i];
-    let modal = this.modalCtrl.create(LabelEditor, {image});
-    modal.present();
   }
 
   takePhoto(srcIdx) {

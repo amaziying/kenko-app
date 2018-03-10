@@ -1,10 +1,10 @@
 page-favourite {
 	.selected {
-		font-weight: bold;
-		border-bottom: 2px solid black;
+		font-weight: 700 !important;
 	}
 	.side-by-side {
 		display: inline-block;
+		font-weight: 400;
 	}
 	.icon {
 		color: #6096ef;
