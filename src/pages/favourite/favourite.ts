@@ -46,6 +46,7 @@ export class FavouritePage {
   ]
 
   constructor(public navCtrl: NavController, public iab: InAppBrowser, public recs: RecommendationProvider) {
+    )
   }
 
   openLink(link: string) {

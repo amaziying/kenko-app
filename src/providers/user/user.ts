@@ -25,7 +25,6 @@ export class UserProvider {
     } else {
       this.uuid = 'test'
     }
-  	
   }
 
 }
