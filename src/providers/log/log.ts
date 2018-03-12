@@ -52,12 +52,26 @@ export class LogProvider {
     const day = this.getDate(date)
 
     if (!day) {
-      return false
+      return Promise.reject('No date for today')
     }
 
     day[session] = meal
-    this.http.post('/api/log/' + this.user.uuid, day)
-    return true
+    console.log(day)
+
+    return new Promise((resolve, reject) => {
+      // We're using Angular HTTP provider to request the data,
+      // then on the response, it'll map the JSON data to a parsed JS object.
+      // Next, we process the data and resolve the promise with the new data.
+      this.http.post('http://flask-env.svnymeriyr.us-east-1.elasticbeanstalk.com/api/log/' + this.user.uuid, day)
+        .subscribe(data => {
+          // we've got back the raw data, now generate the core schedule data
+          // and save the data for later reference
+          resolve(day);
+        }, error => {
+          console.log(error)
+          reject(error)
+        });
+    });
   }
 
 }
