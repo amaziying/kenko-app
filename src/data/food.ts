@@ -1,4 +1,9 @@
 const data = [
+  "Chicken",
+  "Shrimp",
+  "Beef",
+  "Taco",
+  "Naan",
   "Beets",
   "Cabbage",
   "Cauliflower",
