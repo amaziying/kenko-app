@@ -27,7 +27,7 @@ export class FavouritePage {
     'veg': 'Vegetables',
     'fru': 'Fruits',
     'milkalt': 'Milk & Alternatives',
-    'meatalt': 'Milk & Alternatives',
+    'meatalt': 'Meat & Alternatives',
     'grain': 'Grains',
     'other': 'Other'
   }
