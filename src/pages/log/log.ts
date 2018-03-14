@@ -31,6 +31,10 @@ export class LogPage {
       const modal = modalCtrl.create(LoginPage)
       modal.onDidDismiss(() => {
         this.log.lookup()
+          .then(data => {
+            this.log.addToday()
+          })
+          .catch(err => console.log('error'))
       })
       modal.present()
     }
