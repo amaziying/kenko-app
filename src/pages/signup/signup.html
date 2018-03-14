@@ -2,6 +2,7 @@
   <div padding>
     <h3>We're excited to have you on board.</h3>
   </div>
+  <div padding *ngIf="error[getHash()]" style="color:#EE5D5D">{{error[getHash()]}}</div>
   <ion-item padding-horizontal>
     <ion-label color="dismiss" stacked>Full name</ion-label>
     <ion-input [(ngModel)]="name" type="text"></ion-input>

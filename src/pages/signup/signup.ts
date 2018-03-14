@@ -25,11 +25,16 @@ export class SignupPage {
   sex: string
   password: string
   referral: string
-  error: string
+  error = {}
 
 
   constructor(public view: ViewController, private user: UserProvider) {
     this._ = _
+  }
+
+  getHash() {
+    const { name, email, age, sex } = this
+    return [name, email, age, sex].join('-')
   }
 
   create() {
@@ -39,10 +44,11 @@ export class SignupPage {
         .then((success) => {
           this.view.dismiss({ success: true })
         }, (error) => {
-          console.log(error)
+          this.error[this.getHash()] = 'Could not create the account. Please try again later.'
         })
+    } else {
+      this.error[this.getHash()] = 'Please fill in missing personal information!'
     }
-    
   }
 
   goBack() {

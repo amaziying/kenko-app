@@ -2,6 +2,7 @@
   <div style="margin-top: 60px;" padding>
     <img class="logo" src="assets/imgs/login_logo.png">
   </div>
+  <div padding *ngIf="error[email]" style="color:#EE5D5D">{{error[email]}}</div>
   <ion-item padding style="margin-top: 10px;">
     <ion-label color="dismiss" stacked>Email</ion-label>
     <ion-input [(ngModel)]="email" type="email"></ion-input>

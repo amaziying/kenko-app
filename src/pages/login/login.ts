@@ -19,7 +19,7 @@ import { SignupPage } from '../signup/signup';
 export class LoginPage {
   email: string
   password: string;
-  error: string;
+  error = {};
 
   constructor(private view: ViewController, private modal: ModalController, private user: UserProvider) {
   }
@@ -30,7 +30,7 @@ export class LoginPage {
         .then((success) => {
           this.view.dismiss()
         }, (error) => {
-          this.error = 'We could not find a user with this email, perhaps try creating a new account!'
+          this.error[this.email] = 'We could not find a user with this email, perhaps try creating a new account!'
         })
     }
   }
