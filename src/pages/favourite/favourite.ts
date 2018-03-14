@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
+import * as _ from 'lodash';
+
 import { RecommendationProvider } from '../../providers/recommendation/recommendation';
 
 /**
@@ -18,11 +20,6 @@ import { RecommendationProvider } from '../../providers/recommendation/recommend
 export class FavouritePage {
   showFavourites = false
 
-  reasonMapping = {
-    'veg': 'Because you should have more vegetables',
-    'meat': 'Because you should have more meat'
-  }
-
   categoryMapping = {
     'veg': 'Vegetables',
     'fru': 'Fruits',
@@ -33,6 +30,20 @@ export class FavouritePage {
   }
 
   constructor(public navCtrl: NavController, public iab: InAppBrowser, public recs: RecommendationProvider) {
+  }
+
+  getDeficientFoodGroups() {
+    return _(this.recs.insights)
+      .filter(o => o.expected > o.consumed)
+      .map(o => o.category)
+      .value()
+  }
+
+  toListSentence(strings) {
+    if (!strings.length) {
+      return '';
+    }
+    return _(strings).map(s => this.categoryMapping[s].toLowerCase()).value().join(', ')
   }
 
   openLink(link: string) {

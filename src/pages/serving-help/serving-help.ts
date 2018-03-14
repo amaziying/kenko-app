@@ -17,27 +17,27 @@ export class ServingHelpPage {
   assets = [
     {
       name: 'Grains',
-      file: '../../assets/imgs/grains.png',
+      file: 'assets/imgs/grains.png',
       show: false
     },
     {
       name: 'Fruits & Vegetables',
-      file: '../../assets/imgs/fruits_and_vegs.png',
+      file: 'assets/imgs/fruits_and_vegs.png',
       show: false
     },
     {
       name: 'Meat & Alternatives',
-      file: '../../assets/imgs/meat_and_alts.png',
+      file: 'assets/imgs/meat_and_alts.png',
       show: false
     },
     {
       name: 'Milk & Alternatives',
-      file: '../../assets/imgs/milk_and_alts.png',
+      file: 'assets/imgs/milk_and_alts.png',
       show: false
     },
     {
       name: 'Fats',
-      file: '../../assets/imgs/fats.png',
+      file: 'assets/imgs/fats.png',
       show: false
     }
   ]

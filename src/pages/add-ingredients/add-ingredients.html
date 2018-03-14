@@ -27,12 +27,12 @@
   <ion-searchbar [(ngModel)]="searchInput" (ionInput)="getItems($event.target.value)"></ion-searchbar>
   <ion-list *ngIf="items.length">
     <ion-item *ngFor="let item of items" (click)="selectItem(item)">
-      {{ item }}
+      {{capitalizeFirstLetter(item)}}
     </ion-item>
   </ion-list>
   <ion-list *ngIf="!items.length && !searchInput">
     <ion-item *ngFor="let ingredient of mealEdit.ingredients">
-      <ion-label>{{ingredient.name}}</ion-label>
+      <ion-label>{{capitalizeFirstLetter(ingredient.name)}}</ion-label>
       <ion-label (click)="editServing(ingredient.name)" item-end>{{ingredient.serving}} servings</ion-label>
       <button (click)="mealEdit.removeIngredient(ingredient.name)" clear ion-button icon-only item-end color="dark">
         <ion-icon name="close"></ion-icon>

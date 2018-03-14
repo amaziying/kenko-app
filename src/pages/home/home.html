@@ -1,15 +1,15 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
-      Articles
+      Education
     </ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding-horizontal>
 
   <div padding-horizontal>
-    <h5 class="side-by-side" (click)="toggleFavourites(false)" [ngClass]="{'selected': !showFavourites}">New</h5>
-    <h5 margin-left class="side-by-side" (click)="toggleFavourites(true)" [ngClass]="{'selected': showFavourites}">Favourites</h5>
+    <h4 class="side-by-side" (click)="toggleFavourites(false)" [ngClass]="{'selected': !showFavourites}">New</h4>
+    <h4 margin-left class="side-by-side" (click)="toggleFavourites(true)" [ngClass]="{'selected': showFavourites}">Favourites</h4>
   </div>
   <ng-container *ngFor="let rec of articles.list">
     <ion-card *ngIf="!showFavourites || rec.liked">

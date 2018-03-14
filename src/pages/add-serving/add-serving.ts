@@ -37,14 +37,13 @@ export class AddServingPage {
   }
 
   save() {
-    if (this.serving) {
-      const ingredient = this.mealEdit.getIngredient()
-      ingredient.serving = parseFloat(this.serving)
+    const serving = this.serving ? parseFloat(this.serving) : null
 
-      this.mealEdit.currentIngredient = ''
-      this.viewCtrl.dismiss()
-    }
-    
+    const ingredient = this.mealEdit.getIngredient()
+    ingredient.serving = serving
+
+    this.mealEdit.currentIngredient = ''
+    this.viewCtrl.dismiss()
   }
 
 }

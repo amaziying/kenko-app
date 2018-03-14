@@ -7,13 +7,12 @@ page-add-serving {
 	}
 
 	.serving-container {
-		border-bottom: 1px solid rgb(114, 114, 114);
 		width: 100%;
 
 		.serving-input {
-			margin-left: 30px;
-			width: 30%;
+			width: 40%;
 			display: inline-block;
+			border-bottom: 1px solid rgb(114, 114, 114);
 		}
 		.serving-text {
 			display: inline-block;

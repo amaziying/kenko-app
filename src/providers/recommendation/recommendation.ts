@@ -34,7 +34,7 @@ export class RecommendationProvider {
   insights: Array<Insight> = []
 
   constructor(public http: HttpClient, private user: UserProvider) {
-    this.lookup()
+    // this.lookup()
   }
 
   lookup() {
@@ -47,7 +47,7 @@ export class RecommendationProvider {
 
     this.http.get('http://flask-env.svnymeriyr.us-east-1.elasticbeanstalk.com/api/recipes/' + this.user.user.user_id  + '/4')
       .subscribe((data: any) => {
-        this.recommendations = data
+        this.recommendations = _.flatten(data)
       }, (error) => {
         console.log(error)
       })

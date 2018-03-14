@@ -28,7 +28,11 @@ export class LogProvider {
       return;
     }
 
-    http.get('http://flask-env.svnymeriyr.us-east-1.elasticbeanstalk.com/api/log_retrieve/' + user.user.user_id + '/5')
+    
+  }
+
+  lookup() {
+    this.http.get('http://flask-env.svnymeriyr.us-east-1.elasticbeanstalk.com/api/log_retrieve/' + this.user.user.user_id + '/5')
       .subscribe((data: any) => {
         // we've got back the raw data, now generate the core schedule data
         // and save the data for later reference

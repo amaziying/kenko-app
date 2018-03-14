@@ -24,11 +24,11 @@
 
 
 <ion-content padding>
-	<div class="serving-question">
+	<div padding class="serving-question">
 		What is the <span (click)="openServingHelp()" class="help-link">serving size (?)</span> for <b>{{mealEdit.currentIngredient}}</b>?
 	</div>
 
-  <div class="serving-container">
+  <div padding class="serving-container">
     <ion-input class="serving-input" [(ngModel)]="serving" type="number" placeholder="i.e. 1 or 1.5"></ion-input>
     <div class="serving-text">serving(s)</div>
   </div>

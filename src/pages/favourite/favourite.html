@@ -15,7 +15,7 @@
 
 <ion-content padding>
   <div padding-horizontal>
-    <h4>Insights</h4>
+    <h4 style="font-weight:600">Insights</h4>
     <div style="font-size:16px;">Here's how you're doing today:</div>
   </div>
   <ion-card>
@@ -33,11 +33,11 @@
     </ion-card-content>
   </ion-card>
   <div style="font-size: 16px;" padding-horizontal>
-    It appears that you are low in <b>Meat</b> and <b>Vegetables</b> food groups. We have found some recipes you may like below:
+    It appears that you are low in <b>{{toListSentence(getDeficientFoodGroups())}}</b> food groups. Here are some recipes you may like below:
   </div>
   <div style="padding-top: 10px;" padding-horizontal>
-    <h5 class="side-by-side" (click)="toggleFavourites(false)" [ngClass]="{'selected': !showFavourites}">New</h5>
-    <h5 margin-left class="side-by-side" (click)="toggleFavourites(true)" [ngClass]="{'selected': showFavourites}">Favourites</h5>
+    <h4 class="side-by-side" (click)="toggleFavourites(false)" [ngClass]="{'selected': !showFavourites}">New</h4>
+    <h4 margin-left class="side-by-side" (click)="toggleFavourites(true)" [ngClass]="{'selected': showFavourites}">Favourites</h4>
   </div>
   <ng-container *ngFor="let rec of recs.getRecommendations(showFavourites); let i = index">
     <ion-card *ngIf="!showFavourites || recs.liked.has(rec[0].label)">
@@ -48,7 +48,7 @@
           </ion-avatar>
           <div class="article-title">{{rec[0].label}}</div>
         </ion-item>
-        <p padding-horizontal style="font-size: 12px;">{{reasonMapping[rec[0].reason]}}</p>
+        <p padding-horizontal style="font-size: 12px;">Because you should have more {{categoryMapping[rec[0].reason].toLowerCase()}}</p>
         <div>
           <button (click)="recs.like(rec[0].label)" small ion-button icon-start clear>
             <ion-icon *ngIf="recs.liked.has(rec[0].label)" name="heart"></ion-icon>

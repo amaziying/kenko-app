@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 
 import { LogProvider } from '../../providers/log/log';
 import { MealEditProvider } from '../../providers/meal-edit/meal-edit';
-import { AddIngredientsPage } from '../add-ingredients/add-ingredients';
+import { UserProvider } from '../../providers/user/user';
 
+import { AddIngredientsPage } from '../add-ingredients/add-ingredients';
+import { LoginPage } from '../login/login';
+
+import * as _ from 'lodash';
 import * as moment from 'moment';
 
 /**
@@ -22,7 +26,15 @@ export class LogPage {
   sessions: Array<string> = ['breakfast', 'lunch', 'dinner', 'snack']
   moment = moment
 
-  constructor(public navCtrl: NavController, public mealEdit: MealEditProvider, public log: LogProvider) {}
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public mealEdit: MealEditProvider, public log: LogProvider, public user: UserProvider) {
+    if (_.isEmpty(user.user)) {
+      const modal = modalCtrl.create(LoginPage)
+      modal.onDidDismiss(() => {
+        this.log.lookup()
+      })
+      modal.present()
+    }
+  }
 
   addLog(session, date) {
     const log = this.log.getDate(date)
@@ -55,7 +67,4 @@ export class LogPage {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  ionViewWillEnter() {
-    this.log.addToday()
-  }
 }
