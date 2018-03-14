@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Recommendations</ion-title>
+    <ion-title>Insights</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -33,9 +33,9 @@
     </ion-card-content>
   </ion-card>
   <div style="font-size: 16px; margin-top: 10px;" padding-horizontal>
-    It appears that you are low in <b>{{toListSentence(getDeficientFoodGroups())}}</b> food groups. Here are some recipes you may like below:
+    It appears that you are low in <b>{{toListSentence(getDeficientFoodGroups())}}</b> food groups. <span *ngIf="recs.recommendations.length">Here are some recipes you may like below:</span>
   </div>
-  <div style="padding-top: 10px;" padding-horizontal>
+  <div *ngIf="recs.recommendations.length" style="padding-top: 10px;" padding-horizontal>
     <h4 class="side-by-side" (click)="toggleFavourites(false)" [ngClass]="{'selected': !showFavourites}">New</h4>
     <h4 margin-left class="side-by-side" (click)="toggleFavourites(true)" [ngClass]="{'selected': showFavourites}">Favourites</h4>
   </div>

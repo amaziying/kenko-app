@@ -1,5 +1,6 @@
 const data = [
   "Chicken",
+  "Onion",
   "Shrimp",
   "Beef",
   "Taco",
