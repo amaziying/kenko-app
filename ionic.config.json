@@ -4,5 +4,8 @@
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
+  },
+  "proxies": {
+    "proxyUrl": "http://flask-env.svnymeriyr.us-east-1.elasticbeanstalk.com"
   }
 }

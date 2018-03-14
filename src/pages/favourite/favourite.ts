@@ -23,30 +23,16 @@ export class FavouritePage {
     'meat': 'Because you should have more meat'
   }
 
-  insights = [
-    {
-      category: 'Fruits & vegetables',
-      status: '4/6',
-      deficient: true
-    },
-    {
-      category: 'Grain products',
-      status: '6/6'
-    },
-    {
-      category: 'Milk & alt.',
-      status: '4/2',
-      excess: true
-    },
-    {
-      category: 'Meat & alt.',
-      status: '1/2',
-      deficient: true
-    }
-  ]
+  categoryMapping = {
+    'veg': 'Vegetables',
+    'fru': 'Fruits',
+    'milkalt': 'Milk & Alternatives',
+    'meatalt': 'Milk & Alternatives',
+    'grain': 'Grains',
+    'other': 'Other'
+  }
 
   constructor(public navCtrl: NavController, public iab: InAppBrowser, public recs: RecommendationProvider) {
-    )
   }
 
   openLink(link: string) {
@@ -59,6 +45,10 @@ export class FavouritePage {
 
   toggleFavourites(show) {
     this.showFavourites = show
+  }
+
+  ionViewWillEnter() {
+    this.recs.lookup()
   }
 
 }

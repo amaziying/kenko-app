@@ -8,6 +8,9 @@ import { FavouritePage } from '../pages/favourite/favourite';
 import { LogPage } from '../pages/log/log';
 import { AddIngredientsPage } from '../pages/add-ingredients/add-ingredients';
 import { AddServingPage } from '../pages/add-serving/add-serving';
+import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
+import { ServingHelpPage } from '../pages/serving-help/serving-help';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -24,6 +27,7 @@ import { LogProvider } from '../providers/log/log';
 import { ArticlesProvider } from '../providers/articles/articles';
 import { RecommendationProvider } from '../providers/recommendation/recommendation';
 import { UserProvider } from '../providers/user/user';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -33,12 +37,16 @@ import { UserProvider } from '../providers/user/user';
     LogPage,
     TabsPage,
     AddIngredientsPage,
-    AddServingPage
+    AddServingPage,
+    LoginPage,
+    SignupPage,
+    ServingHelpPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -48,7 +56,10 @@ import { UserProvider } from '../providers/user/user';
     LogPage,
     TabsPage,
     AddIngredientsPage,
-    AddServingPage
+    AddServingPage,
+    LoginPage,
+    SignupPage,
+    ServingHelpPage
   ],
   providers: [
     Camera,

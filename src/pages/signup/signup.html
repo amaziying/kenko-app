@@ -1,0 +1,43 @@
+<ion-content padding>
+  <div padding>
+    <h3>We're excited to have you on board.</h3>
+  </div>
+  <ion-item padding-horizontal>
+    <ion-label color="dismiss" stacked>Full name</ion-label>
+    <ion-input [(ngModel)]="name" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item padding-horizontal>
+    <ion-label color="dismiss" stacked>Sex</ion-label>
+    <ion-select [(ngModel)]="sex">
+      <ion-option value="F">Female</ion-option>
+      <ion-option value="M">Male</ion-option>
+      <ion-option value="O">Other</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item padding-horizontal>
+    <ion-label color="dismiss" stacked>Age</ion-label>
+    <ion-select [(ngModel)]="age">
+      <ion-option *ngFor="let ageSelect of _.range(19, 50)" value={{ageSelect}}>{{ageSelect}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item padding-horizontal>
+    <ion-label color="dismiss" stacked>Email</ion-label>
+    <ion-input [(ngModel)]="email" type="email"></ion-input>
+  </ion-item>
+
+  <ion-item padding-horizontal>
+    <ion-label color="dismiss" stacked>Password</ion-label>
+    <ion-input [(ngModel)]="password" type="password"></ion-input>
+  </ion-item>
+  <ion-item padding-horizontal>
+    <ion-label color="dismiss" stacked>Doctor's Referral Code</ion-label>
+    <ion-input [(ngModel)]="referral" type="password"></ion-input>
+  </ion-item>
+
+  <div padding>
+    <button (click)="create()" style="margin: 0 auto; display: inline-block;"  ion-button round color="primary">Create</button>
+    <button (click)="goBack()" style="margin: 0 auto; display: inline-block;"  ion-button clear color="dismiss">Go Back</button>
+  </div>
+</ion-content>

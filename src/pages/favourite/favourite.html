@@ -20,14 +20,14 @@
   </div>
   <ion-card>
     <ion-card-content style="font-size:14px; padding:0">
-      <ion-item style="border-bottom: 1px solid #858585" *ngFor="let insight of insights">
+      <ion-item style="border-bottom: 1px solid #858585" *ngFor="let insight of recs.insights">
         <div style="width: 10px;" item-start>
-          <ion-icon style="color:#8ECA68" *ngIf="!insight.excess && !insight.deficient" name="checkmark-circle"></ion-icon>
-          <ion-icon style="color:#EE5D5D" *ngIf="insight.excess" name="alert"></ion-icon>
+          <ion-icon style="color:#8ECA68" *ngIf="insight.consumed === insight.expected" name="checkmark-circle"></ion-icon>
+          <ion-icon style="color:#EE5D5D" *ngIf="insight.consumed > insight.expected" name="alert"></ion-icon>
         </div>
-        <div item-start>{{insight.category}}</div>
+        <div item-start>{{categoryMapping[insight.category]}}</div>
         <div item-end>
-          <span style="font-weight:bold;">{{insight.status}}</span> <span style="font-size: 12px;">servings</span>
+          <span style="font-weight:bold;">{{insight.consumed + '/' + insight.expected}}</span> <span style="font-size: 12px;">servings</span>
         </div>
       </ion-item>
     </ion-card-content>

@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <button start ion-button icon-only (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>What is a serving?</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div padding style="font-size: 16px;">
+    The following visual guides can help you with determining <b>approximate</b> serving sizes. Each diagram represents one serving size.
+  </div>
+  <ng-container *ngFor="let asset of assets">
+    <button color="black" (click)="asset.show = !!!asset.show" large ion-button icon-end clear>
+      {{asset.name}}
+      <ion-icon *ngIf="!asset.show" color="primary" name="add"></ion-icon>
+      <ion-icon *ngIf="asset.show" color="primary" name="remove"></ion-icon>
+    </button>
+    <img [hidden]="!asset.show" src={{asset.file}}>
+  </ng-container>
+</ion-content>

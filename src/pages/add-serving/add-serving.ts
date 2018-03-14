@@ -3,6 +3,8 @@ import { App, ViewController } from 'ionic-angular';
 
 import { MealEditProvider } from '../../providers/meal-edit/meal-edit';
 
+import { ServingHelpPage } from '../serving-help/serving-help';
+
 /**
  * Generated class for the AddMealPage page.
  *
@@ -22,6 +24,10 @@ export class AddServingPage {
     const ingredient = mealEdit.getIngredient()
     const serving = ingredient && ingredient.serving
     this.serving = serving ? serving.toString() : ''
+  }
+
+  openServingHelp() {
+    this.app.getRootNav().push(ServingHelpPage)
   }
 
   close() {

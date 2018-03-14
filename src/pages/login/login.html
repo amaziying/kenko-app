@@ -1,0 +1,22 @@
+<ion-content padding>
+  <div style="margin-top: 60px;" padding>
+    <img class="logo" src="../../assets/imgs/login_logo.png">
+  </div>
+  <ion-item padding style="margin-top: 10px;">
+    <ion-label color="dismiss" stacked>Email</ion-label>
+    <ion-input [(ngModel)]="email" type="email"></ion-input>
+  </ion-item>
+
+  <ion-item padding>
+    <ion-label color="dismiss" stacked>Password</ion-label>
+    <ion-input [(ngModel)]="password" type="password"></ion-input>
+  </ion-item>
+
+  <div padding>
+    <button (click)="attemptLogin()" style="margin: 0 auto; display: block; width: 180px;"  large ion-button round color="primary">Login</button>
+    <div padding style="font-size: 18px; margin: 0 auto; width: 210px;">
+
+      or <span (click)="openSignup()" style="color:#66a6ff; font-weight: 500">Create an Account</span>
+    </div>
+  </div>
+</ion-content>

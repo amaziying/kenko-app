@@ -19,3 +19,18 @@
 	background-color: #6096ef;
 	color: #000;
 }
+
+@font-face {
+    font-family: 'AvenirMedium';
+    src: url('../assets/fonts/AvenirMedium/AvenirMedium.eot');
+    src: url('../assets/fonts/AvenirMedium/AvenirMedium.eot') format('embedded-opentype'),
+         url('../assets/fonts/AvenirMedium/AvenirMedium.woff2') format('woff2'),
+         url('../assets/fonts/AvenirMedium/AvenirMedium.woff') format('woff'),
+         url('../assets/fonts/AvenirMedium/AvenirMedium.ttf') format('truetype'),
+         url('../assets/fonts/AvenirMedium/AvenirMedium.svg#AvenirMedium') format('svg');
+}
+
+ion-app {
+  font-family: "AvenirMedium" !important;
+}
+

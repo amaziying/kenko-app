@@ -25,7 +25,7 @@
 
 <ion-content padding>
 	<div class="serving-question">
-		What is the <span class="help-link">serving size (?)</span> for <b>{{mealEdit.currentIngredient}}</b>?
+		What is the <span (click)="openServingHelp()" class="help-link">serving size (?)</span> for <b>{{mealEdit.currentIngredient}}</b>?
 	</div>
 
   <div class="serving-container">

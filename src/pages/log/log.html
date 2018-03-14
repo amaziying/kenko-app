@@ -16,7 +16,7 @@
 <ion-content padding>
 	<ng-container *ngFor="let day of log.pastMeals; let i = index;">
 		<h3 padding-horizontal *ngIf="i === 0">Today</h3>
-    <h3 padding-horizontal *ngIf="i !== 0">{{meal.date}}</h3>
+    <h3 padding-horizontal style="padding-top: 10px;" *ngIf="i !== 0">{{moment(day.date).format('MMM Do')}}</h3>
     <ng-container *ngFor="let session of sessions">
       <ion-card class="log-card" (click)="addLog(session, day.date)" *ngIf="day[session]">
         <ion-card-content padding-vertical>
@@ -31,5 +31,9 @@
         </ion-card-content>
       </ion-card>
     </ng-container>
+    <button *ngIf="possiblePreviousDay(i)" (click)="addPreviousDay(i)" color="primary" ion-button icon-start clear>
+      <ion-icon name="add"></ion-icon>
+      Add Previous Day
+    </button>
   </ng-container>
 </ion-content>
