@@ -38,18 +38,13 @@ export class AddServingPage {
       name: 'Milk & Alternatives',
       file: 'assets/imgs/milk_and_alts.png',
       show: false
-    },
-    {
-      name: 'Fats',
-      file: 'assets/imgs/fats.png',
-      show: false
     }
   ]
 
   constructor(public viewCtrl: ViewController, public app: App, public mealEdit: MealEditProvider) {
     const ingredient = mealEdit.getIngredient()
     const serving = ingredient && ingredient.serving
-    this.serving = serving ? serving.toString() : ''
+    this.serving = serving > 0 ? serving.toString() : ''
   }
 
   close() {
