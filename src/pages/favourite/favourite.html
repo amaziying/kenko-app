@@ -20,14 +20,17 @@
     <ion-card>
       <ion-card-content style="font-size:14px; padding:0">
         <ng-container *ngFor="let insight of recs.insights">
-          <ion-item style="border-bottom: 1px solid #858585"*ngIf="insight.category !== 'other'">
+          <ion-item style="border-bottom: 1px solid #858585">
             <div style="width: 10px;" item-start>
-              <ion-icon style="color:#8ECA68" *ngIf="insight.consumed === insight.expected" name="checkmark-circle"></ion-icon>
-              <ion-icon style="color:#EE5D5D" *ngIf="insight.consumed > insight.expected" name="alert"></ion-icon>
+              <ion-icon style="color:#8ECA68" *ngIf="insight.consumed === insight.expected && insight.category !== 'other'" name="checkmark-circle"></ion-icon>
+              <ion-icon style="color:#EE5D5D" *ngIf="insight.consumed > insight.expected && insight.category !== 'other'" name="alert"></ion-icon>
             </div>
             <div item-start>{{categoryMapping[insight.category]}}</div>
-            <div item-end>
+            <div *ngIf="insight.category !== 'other'" item-end>
               <span style="font-weight:600;">{{insight.consumed + '/' + insight.expected}}</span> <span style="font-size: 12px;">servings</span>
+            </div>
+            <div *ngIf="insight.category === 'other'" item-end>
+              <span style="font-weight:600;">{{insight.consumed}}</span> <span style="font-size: 12px;">servings</span>
             </div>
           </ion-item>
         </ng-container>
