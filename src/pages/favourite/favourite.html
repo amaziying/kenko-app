@@ -11,8 +11,6 @@
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content padding>
   <div padding-horizontal>
     <h4 style="font-weight:600">Insights</h4>
@@ -27,7 +25,7 @@
         </div>
         <div item-start>{{categoryMapping[insight.category]}}</div>
         <div item-end>
-          <span style="font-weight:bold;">{{insight.consumed + '/' + insight.expected}}</span> <span style="font-size: 12px;">servings</span>
+          <span style="font-weight:600;">{{insight.consumed + '/' + insight.expected}}</span> <span style="font-size: 12px;">servings</span>
         </div>
       </ion-item>
     </ion-card-content>
@@ -59,9 +57,7 @@
             Try another
           </button>
         </div>
-        
       </ion-card-content>
     </ion-card>
   </ng-container>
-
 </ion-content>

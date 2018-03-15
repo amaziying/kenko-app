@@ -10,7 +10,7 @@ import { AddIngredientsPage } from '../pages/add-ingredients/add-ingredients';
 import { AddServingPage } from '../pages/add-serving/add-serving';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
-import { ServingHelpPage } from '../pages/serving-help/serving-help';
+import { OnboardingSlidesPage } from '../pages/onboarding-slides/onboarding-slides';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -40,7 +40,7 @@ import { IonicStorageModule } from '@ionic/storage';
     AddServingPage,
     LoginPage,
     SignupPage,
-    ServingHelpPage
+    OnboardingSlidesPage
   ],
   imports: [
     BrowserModule,
@@ -59,7 +59,7 @@ import { IonicStorageModule } from '@ionic/storage';
     AddServingPage,
     LoginPage,
     SignupPage,
-    ServingHelpPage
+    OnboardingSlidesPage
   ],
   providers: [
     Camera,

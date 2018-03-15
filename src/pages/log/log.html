@@ -16,7 +16,10 @@
 <ion-content padding>
 	<ng-container *ngFor="let day of log.pastMeals; let i = index;">
 		<h4 padding-horizontal *ngIf="i === 0">Today</h4>
-    <h4 padding-horizontal style="padding-top: 10px;" *ngIf="i !== 0">{{moment(day.date).format('MMM Do')}}</h4>
+    <div padding-horizontal *ngIf="i === 0 && log.pastMeals.length === 1 && _.keys(day).length === 1">
+      You have yet to log a meal. Log your first meal today and begin your journey!
+    </div>
+    <h4 padding-horizontal style="padding-top: 10px;" *ngIf="i !== 0">{{moment(day.date).format('dddd MMM Do')}}</h4>
     <ng-container *ngFor="let session of sessions">
       <ion-card class="log-card" (click)="addLog(session, day.date)" *ngIf="day[session] && day[session].ingredients.length">
         <ion-card-content padding-vertical>

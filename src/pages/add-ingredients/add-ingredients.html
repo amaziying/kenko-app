@@ -5,7 +5,6 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  
 
   <ion-toolbar color="primary">
     <ion-buttons start>
@@ -13,7 +12,7 @@
         <ion-icon name="close"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>{{searchInput ? 'Add Food' : capitalizeFirstLetter(mealEdit.title) }}</ion-title>
+    <ion-title>{{isSearchMode ? 'Add Food' : capitalizeFirstLetter(mealEdit.title) }}</ion-title>
     <ion-buttons end>
       <button end ion-button icon-only (click)="save()">
         <ion-icon name="checkmark"></ion-icon>
@@ -25,18 +24,26 @@
 
 <ion-content padding>
   <ion-searchbar [(ngModel)]="searchInput" (ionInput)="getItems($event.target.value)"></ion-searchbar>
-  <ion-list *ngIf="items.length">
+  <ion-list *ngIf="isSearchMode()">
     <ion-item *ngFor="let item of items" (click)="selectItem(item)">
       {{capitalizeFirstLetter(item)}}
     </ion-item>
   </ion-list>
-  <ion-list *ngIf="!items.length && !searchInput">
+  <ion-list *ngIf="!isSearchMode()">
     <ion-item *ngFor="let ingredient of mealEdit.ingredients">
       <ion-label>{{capitalizeFirstLetter(ingredient.name)}}</ion-label>
-      <ion-label (click)="editServing(ingredient.name)" item-end>{{ingredient.serving}} servings</ion-label>
+      <span *ngIf="ingredient.serving" (click)="editServing(ingredient.name)" item-end>{{ingredient.serving}} servings</span>
+      <button *ngIf="!ingredient.serving" (click)="editServing(ingredient.name)" color="primary" ion-button icon-start clear item-end>
+        <ion-icon name="add"></ion-icon>
+        Add Serving
+      </button>
       <button (click)="mealEdit.removeIngredient(ingredient.name)" clear ion-button icon-only item-end color="dark">
         <ion-icon name="close"></ion-icon>
       </button>
     </ion-item>
   </ion-list>
+
+  <div padding *ngIf="isSearchMode() && !items.length">
+    Sorry we currently don't have <b>{{searchInput}}</b> in our database, stay tuned for updates!
+  </div>
 </ion-content>

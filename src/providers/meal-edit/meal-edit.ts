@@ -14,7 +14,7 @@ export class MealEditProvider {
   date: string = ''
   title: string = ''
   image: string = ''
-  ingredients: Array<{name: string, serving: number}> = []
+  ingredients: Array<{name: string, serving: any}> = []
 
   currentIngredient: string
 

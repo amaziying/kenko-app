@@ -13,11 +13,8 @@
     <ion-input [(ngModel)]="password" type="password"></ion-input>
   </ion-item>
 
-  <div padding>
-    <button (click)="attemptLogin()" style="margin: 0 auto; display: block; width: 180px;"  large ion-button round color="primary">Login</button>
-    <div padding style="font-size: 18px; margin: 0 auto; width: 210px;">
-
-      or <span (click)="openSignup()" style="color:#66a6ff; font-weight: 500">Create an Account</span>
-    </div>
+  <div style="display: flex; flex-direction: column; align-items: center;" padding>
+    <div><button (click)="attemptLogin()" style="width: 180px;" large ion-button round color="primary">Login</button></div>
+    <div style="font-size: 16px;" padding-vertical>or <span (click)="openSignup()" style="color:#66a6ff; font-weight: 500">Create an Account</span></div>
   </div>
 </ion-content>

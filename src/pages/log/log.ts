@@ -25,8 +25,10 @@ import * as moment from 'moment';
 export class LogPage {
   sessions: Array<string> = ['breakfast', 'lunch', 'dinner', 'snack']
   moment = moment
+  _: any
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public mealEdit: MealEditProvider, public log: LogProvider, public user: UserProvider) {
+    this._ = _
     if (_.isEmpty(user.user)) {
       const modal = modalCtrl.create(LoginPage)
       modal.onDidDismiss(() => {

@@ -23,10 +23,17 @@ export class LogProvider {
     date: string
   }> = []
 
+  totalItems: Array<string> = []
+
   constructor(public http: HttpClient, public user: UserProvider) {
-    if (_.isEmpty(user.user)) {
-      return;
-    }
+    this.http.get('http://flask-env.svnymeriyr.us-east-1.elasticbeanstalk.com/api/food_name_retrieve')
+      .subscribe((data: Array<string>) => {
+        // we've got back the raw data, now generate the core schedule data
+        // and save the data for later reference
+        this.totalItems = _(data).sortBy().uniqBy().value()
+      }, error => {
+        console.log(error)
+      });
   }
 
   lookup() {
@@ -41,7 +48,6 @@ export class LogProvider {
           reject(error)
         });
     })
-    
   }
 
   addToday() {

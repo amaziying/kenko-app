@@ -3,8 +3,6 @@ import { App, ViewController } from 'ionic-angular';
 
 import { MealEditProvider } from '../../providers/meal-edit/meal-edit';
 
-import { ServingHelpPage } from '../serving-help/serving-help';
-
 /**
  * Generated class for the AddMealPage page.
  *
@@ -20,14 +18,38 @@ import { ServingHelpPage } from '../serving-help/serving-help';
 export class AddServingPage {
   serving: string;
 
+  assets = [
+    {
+      name: 'Grains',
+      file: 'assets/imgs/grains.png',
+      show: false
+    },
+    {
+      name: 'Fruits & Vegetables',
+      file: 'assets/imgs/fruits_and_vegs.png',
+      show: false
+    },
+    {
+      name: 'Meat & Alternatives',
+      file: 'assets/imgs/meat_and_alts.png',
+      show: false
+    },
+    {
+      name: 'Milk & Alternatives',
+      file: 'assets/imgs/milk_and_alts.png',
+      show: false
+    },
+    {
+      name: 'Fats',
+      file: 'assets/imgs/fats.png',
+      show: false
+    }
+  ]
+
   constructor(public viewCtrl: ViewController, public app: App, public mealEdit: MealEditProvider) {
     const ingredient = mealEdit.getIngredient()
     const serving = ingredient && ingredient.serving
     this.serving = serving ? serving.toString() : ''
-  }
-
-  openServingHelp() {
-    this.app.getRootNav().push(ServingHelpPage)
   }
 
   close() {
@@ -37,7 +59,7 @@ export class AddServingPage {
   }
 
   save() {
-    const serving = this.serving ? parseFloat(this.serving) : null
+    const serving = this.serving ? parseFloat(this.serving) : 'null'
 
     const ingredient = this.mealEdit.getIngredient()
     ingredient.serving = serving

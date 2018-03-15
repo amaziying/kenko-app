@@ -24,12 +24,25 @@
 
 
 <ion-content padding>
-	<div padding class="serving-question">
-		What is the <span (click)="openServingHelp()" class="help-link">serving size (?)</span> for <b>{{mealEdit.currentIngredient}}</b>?
-	</div>
+  <h4 padding>{{mealEdit.currentIngredient}}</h4>
 
-  <div padding class="serving-container">
+  <div padding-horizontal class="serving-container">
     <ion-input class="serving-input" [(ngModel)]="serving" type="number" placeholder="i.e. 1 or 1.5"></ion-input>
     <div class="serving-text">serving(s)</div>
   </div>
+
+  <h4 padding>What is a serving?</h4>
+  <div padding-horizontal style="font-size: 16px;">
+    The following visual guides can help you with determining <b>approximate</b> serving sizes. Each diagram represents one serving size.
+  </div>
+  <ng-container *ngFor="let asset of assets">
+    <div>
+      <button color="black" (click)="asset.show = !!!asset.show" ion-button icon-end clear>
+        {{asset.name}}
+        <ion-icon *ngIf="!asset.show" color="primary" name="add"></ion-icon>
+        <ion-icon *ngIf="asset.show" color="primary" name="remove"></ion-icon>
+      </button>
+      <img [hidden]="!asset.show" src={{asset.file}}>
+    </div>
+  </ng-container>
 </ion-content>

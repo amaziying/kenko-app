@@ -1,0 +1,16 @@
+<ion-content padding>
+
+  <ion-slides pager style="height: 80%">
+    <ion-slide *ngFor="let slide of slides">
+      <h3 style="margin-top: 40px;" padding>{{slide.title}}</h3>
+      <div style="height:200px;"><img src="{{slide.image}}"></div>
+      <p style="font-size: 16px;" padding [innerHTML]="slide.description"></p>
+    </ion-slide>
+  </ion-slides>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <button *ngIf="!s.isEnd()" (click)="s.slideNext()" large ion-button round color="primary" style="width: 180px;">Got it</button>
+    <button *ngIf="s.isEnd()" (click)="close()" large ion-button round color="primary" style="width: 180px;">Get started</button>
+    <button *ngIf="!s.isEnd()" (click)="close()" large ion-button round color="dismiss" clear>Skip tutorial</button>
+  </div>
+
+</ion-content>

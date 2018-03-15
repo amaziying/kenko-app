@@ -5,8 +5,6 @@ import { MealEditProvider } from '../../providers/meal-edit/meal-edit';
 import { LogProvider } from '../../providers/log/log';
 import { AddServingPage } from '../add-serving/add-serving';
 
-import data from '../../data/food';
-
 import * as _ from 'lodash';
 /**
  * Generated class for the AddMealPage page.
@@ -29,7 +27,14 @@ export class AddIngredientsPage {
   }
 
   initializeItems() {
-    this.items = data
+    this.items = this.log.totalItems
+  }
+
+  isSearchMode() {
+    const hasSearchTerm = !!this.searchInput
+    const hasIngredients = this.mealEdit.ingredients.length > 0
+
+    return hasSearchTerm || !hasIngredients
   }
 
   getItems(val) {
@@ -38,12 +43,13 @@ export class AddIngredientsPage {
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
-      this.items = this.items.filter((item) => {
-        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1) &&
-          _.findIndex(this.mealEdit.ingredients, i => i.name === item) === -1;
-      })
-    } else if (this.mealEdit.ingredients.length) {
-      this.items = []
+      // Also sort by index at which the string was found. The earlier it's found, the more relevant it is.
+      this.items = _(this.items)
+        .map((item: string) => ({ item, indexFound: item.toLowerCase().indexOf(val.toLowerCase()) }))
+        .filter(({ item, indexFound }) => indexFound > -1 && _.findIndex(this.mealEdit.ingredients, i => i.name === item) === -1)
+        .sortBy(o => o.indexFound)
+        .map(o => o.item)
+        .value()
     }
   }
 

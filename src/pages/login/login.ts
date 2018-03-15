@@ -4,6 +4,7 @@ import { ViewController, ModalController } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
 
 import { SignupPage } from '../signup/signup';
+import { OnboardingSlidesPage } from '../onboarding-slides/onboarding-slides';
 
 /**
  * Generated class for the LoginPage page.
@@ -39,6 +40,7 @@ export class LoginPage {
     const modal = this.modal.create(SignupPage)
     modal.onDidDismiss((data) => {
       if (data && data.success) {
+        this.modal.create(OnboardingSlidesPage).present()
         this.view.dismiss()
       }
     })
