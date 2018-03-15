@@ -59,7 +59,7 @@ export class AddServingPage {
   }
 
   save() {
-    const serving = this.serving ? parseFloat(this.serving) : 'null'
+    const serving = this.serving ? parseFloat(this.serving) : -1
 
     const ingredient = this.mealEdit.getIngredient()
     ingredient.serving = serving

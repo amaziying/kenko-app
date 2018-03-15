@@ -32,8 +32,8 @@
   <ion-list *ngIf="!isSearchMode()">
     <ion-item *ngFor="let ingredient of mealEdit.ingredients">
       <ion-label>{{capitalizeFirstLetter(ingredient.name)}}</ion-label>
-      <span *ngIf="ingredient.serving" (click)="editServing(ingredient.name)" item-end>{{ingredient.serving}} servings</span>
-      <button *ngIf="!ingredient.serving" (click)="editServing(ingredient.name)" color="primary" ion-button icon-start clear item-end>
+      <span *ngIf="ingredient.serving > 0" (click)="editServing(ingredient.name)" item-end>{{ingredient.serving}} servings</span>
+      <button *ngIf="ingredient.serving <= 0" (click)="editServing(ingredient.name)" color="primary" ion-button icon-start clear item-end>
         <ion-icon name="add"></ion-icon>
         Add Serving
       </button>

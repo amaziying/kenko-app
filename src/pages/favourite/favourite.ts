@@ -18,7 +18,7 @@ import { RecommendationProvider } from '../../providers/recommendation/recommend
   templateUrl: 'favourite.html',
 })
 export class FavouritePage {
-  showFavourites = false
+  showRecommendations = false
 
   categoryMapping = {
     'veg': 'Vegetables',
@@ -54,9 +54,6 @@ export class FavouritePage {
     rec.liked = !rec.liked;
   }
 
-  toggleFavourites(show) {
-    this.showFavourites = show
-  }
 
   ionViewWillEnter() {
     this.recs.lookup()

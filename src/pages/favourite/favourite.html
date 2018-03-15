@@ -13,51 +13,80 @@
 </ion-header>
 <ion-content padding>
   <div padding-horizontal>
-    <h4 style="font-weight:600">Insights</h4>
-    <div style="font-size:16px;">Here's how you're doing today:</div>
+    <h4 class="side-by-side" (click)="showRecommendations = false" [ngClass]="{'selected': !showRecommendations}">Progress</h4>
+    <h4 margin-left class="side-by-side" (click)="showRecommendations = true" [ngClass]="{'selected': showRecommendations}">Recommendations</h4>
   </div>
-  <ion-card>
-    <ion-card-content style="font-size:14px; padding:0">
-      <ion-item style="border-bottom: 1px solid #858585" *ngFor="let insight of recs.insights">
-        <div style="width: 10px;" item-start>
-          <ion-icon style="color:#8ECA68" *ngIf="insight.consumed === insight.expected" name="checkmark-circle"></ion-icon>
-          <ion-icon style="color:#EE5D5D" *ngIf="insight.consumed > insight.expected" name="alert"></ion-icon>
-        </div>
-        <div item-start>{{categoryMapping[insight.category]}}</div>
-        <div item-end>
-          <span style="font-weight:600;">{{insight.consumed + '/' + insight.expected}}</span> <span style="font-size: 12px;">servings</span>
-        </div>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
-  <div style="font-size: 16px; margin-top: 10px;" padding-horizontal>
-    It appears that you are low in <b>{{toListSentence(getDeficientFoodGroups())}}</b> food groups. <span *ngIf="recs.recommendations.length">Here are some recipes you may like below:</span>
-  </div>
-  <div *ngIf="recs.recommendations.length" style="padding-top: 10px;" padding-horizontal>
-    <h4 class="side-by-side" (click)="toggleFavourites(false)" [ngClass]="{'selected': !showFavourites}">New</h4>
-    <h4 margin-left class="side-by-side" (click)="toggleFavourites(true)" [ngClass]="{'selected': showFavourites}">Favourites</h4>
-  </div>
-  <ng-container *ngFor="let rec of recs.getRecommendations(showFavourites); let i = index">
-    <ion-card *ngIf="!showFavourites || recs.liked.has(rec[0].label)">
-      <ion-card-content padding-vertical>
-        <ion-item (click)="openLink(rec[0].url)">
-          <ion-avatar style="width: 60px; height: 60px;" item-start>
-            <img src={{rec[0].image}}>
-          </ion-avatar>
-          <div class="article-title">{{rec[0].label}}</div>
-        </ion-item>
-        <p padding-horizontal style="font-size: 12px;">Because you should have more {{categoryMapping[rec[0].reason].toLowerCase()}}</p>
-        <div>
-          <button (click)="recs.like(rec[0].label)" small ion-button icon-start clear>
-            <ion-icon *ngIf="recs.liked.has(rec[0].label)" name="heart"></ion-icon>
-            <ion-icon *ngIf="!recs.liked.has(rec[0].label)" name="heart-outline"></ion-icon>
-            {{recs.liked.has(rec[0].label) ? 'Unfavourite' : 'Favourite'}}
-          </button>
-          <button *ngIf="!showFavourites" color="dismiss" (click)="recs.dislike(rec[0].label)" small ion-button icon-start clear>
-            Try another
-          </button>
-        </div>
+  <div *ngIf="!showRecommendations">
+    <ion-card>
+      <ion-card-content style="font-size:14px; padding:0">
+        <ng-container *ngFor="let insight of recs.insights">
+          <ion-item style="border-bottom: 1px solid #858585"*ngIf="insight.category !== 'other'">
+            <div style="width: 10px;" item-start>
+              <ion-icon style="color:#8ECA68" *ngIf="insight.consumed === insight.expected" name="checkmark-circle"></ion-icon>
+              <ion-icon style="color:#EE5D5D" *ngIf="insight.consumed > insight.expected" name="alert"></ion-icon>
+            </div>
+            <div item-start>{{categoryMapping[insight.category]}}</div>
+            <div item-end>
+              <span style="font-weight:600;">{{insight.consumed + '/' + insight.expected}}</span> <span style="font-size: 12px;">servings</span>
+            </div>
+          </ion-item>
+        </ng-container>
       </ion-card-content>
     </ion-card>
-  </ng-container>
+    <div padding>
+      Your historical data will be shown here in charts once you've logged more meals!
+    </div>
+  </div>
+
+  
+  <div *ngIf="showRecommendations">
+    <div *ngIf="recs.getRecommendation()" padding>
+      Based on the meals you have been logging, we have found these recipes you may like below!
+    </div>
+    <div *ngIf="!recs.getRecommendation()" padding>
+      Sorry, we currently do not have any new recipes for you. We'll notify you when we find more!
+    </div>
+    <ion-card>
+      <ng-container *ngIf="recs.getRecommendation()">
+        <div (click)="openLink(recs.getRecommendation().url)" style="display:flex; flex-direction: column; justify-content: center;">
+          <img padding style="width: 100%; width: auto;" src={{recs.getRecommendation().image}}>
+          <div padding-horizontal class="article-title">{{recs.getRecommendation().label}}</div>
+          <p *ngIf="categoryMapping[recs.getRecommendation().reason]" padding-horizontal style="font-size: 12px;">Because you should have more {{categoryMapping[recs.getRecommendation().reason].toLowerCase()}}</p>
+        </div>
+        <div padding style="display: flex; justify-content: center;">
+          <button color="success" (click)="recs.like(recs.getRecommendation())" ion-button icon-start round>
+            <ion-icon style="color: white" name="thumbs-up"></ion-icon>
+              Save for later
+          </button>
+          <button color="fail" (click)="recs.dislike(recs.getRecommendation())" ion-button icon-start round>
+            <ion-icon style="color: white" name="thumbs-down"></ion-icon>
+              Dismiss
+          </button>
+
+        </div>
+
+      </ng-container>
+    </ion-card>
+    <h5 padding-horizontal style="margin-top: 40px;" *ngIf="recs.savedRecommendations.length">Saved Recipes</h5>
+    <ng-container *ngFor="let rec of recs.savedRecommendations; let i = index">
+      <ion-card>
+        <ion-card-content>
+          <div style="display:flex">
+            <div>
+              <ion-avatar (click)="openLink(rec.uri)" style="width: 100px; height: 100px;">
+                <img src={{rec.image}}>
+              </ion-avatar>
+            </div>
+            <div>
+              <div padding-horizontal class="article-title">{{rec.label}}</div>
+              <p *ngIf="categoryMapping[rec.reason]" padding-horizontal style="font-size: 12px;">Because you should have more {{categoryMapping[rec.reason].toLowerCase()}}</p>
+              <button color="primary" (click)="recs.unlike(rec)" small ion-button icon-start clear>
+              Unsave
+            </button>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+  </div>
 </ion-content>
