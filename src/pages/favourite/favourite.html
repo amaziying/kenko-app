@@ -13,8 +13,8 @@
 </ion-header>
 <ion-content padding-horizontal>
   <div padding-horizontal>
-    <h4 class="side-by-side" (click)="toggleTabs()" [ngClass]="{'selected': !showRecommendations}">Progress</h4>
-    <h4 margin-left class="side-by-side" (click)="toggleTabs()" [ngClass]="{'selected': showRecommendations}">Recommendations</h4>
+    <h4 class="side-by-side" (click)="showRecommendations = false" [ngClass]="{'selected': !showRecommendations}">Progress</h4>
+    <h4 margin-left class="side-by-side" (click)="showRecommendations = true" [ngClass]="{'selected': showRecommendations}">Recommendations</h4>
   </div>
   <div style="padding-bottom: 20px;" [hidden]="showRecommendations">
     <div style="margin-top:20px;" padding-horizontal>
@@ -40,7 +40,7 @@
         </ng-container>
       </ion-card-content>
     </ion-card>
-    <div style="margin-top:30px;" padding-horizontal>
+    <div [hidden]="recs.history.length === 0" style="margin-top:30px;" padding-horizontal>
       <h5 style="font-weight: 700">Your past 7 days</h5>
       <div style="position: relative;">
         <ion-select interface="popover" [(ngModel)]="currentGraphView" (ngModelChange)="regenerateGraph()">
@@ -50,6 +50,9 @@
         </ion-select>
       </div>
       <canvas #lineCanvas></canvas>
+    </div>
+    <div [hidden]="recs.history.length > 0" padding>
+      Once you've logged more meals, we will begin to show your historical insights here!
     </div>
   </div>
 

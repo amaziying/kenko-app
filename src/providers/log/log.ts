@@ -30,10 +30,13 @@ export class LogProvider {
       .subscribe((data: Array<string>) => {
         // we've got back the raw data, now generate the core schedule data
         // and save the data for later reference
-        this.totalItems = _(data).sortBy().uniqBy().value()
+        this.totalItems = _(data).sortBy().map(i => this.capitalizeFirstLetter(i.toLowerCase().trim())).uniq().value()
       }, error => {
         console.log(error)
       });
+  }
+  capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   lookup() {
