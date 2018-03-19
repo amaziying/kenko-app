@@ -39,8 +39,8 @@
     <div>
       <button color="black" (click)="asset.show = !!!asset.show" ion-button icon-end clear>
         {{asset.name}}
-        <ion-icon *ngIf="!asset.show" color="primary" name="add"></ion-icon>
-        <ion-icon *ngIf="asset.show" color="primary" name="remove"></ion-icon>
+        <ion-icon *ngIf="!asset.show" color="primary" name="arrow-down"></ion-icon>
+        <ion-icon *ngIf="asset.show" color="primary" name="arrow-up"></ion-icon>
       </button>
       <img [hidden]="!asset.show" src={{asset.file}}>
     </div>

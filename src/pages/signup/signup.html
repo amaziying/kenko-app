@@ -10,7 +10,7 @@
 
   <ion-item padding-horizontal>
     <ion-label color="dismiss" stacked>Sex</ion-label>
-    <ion-select [(ngModel)]="sex">
+    <ion-select interface="popover" [(ngModel)]="sex">
       <ion-option value="F">Female</ion-option>
       <ion-option value="M">Male</ion-option>
       <ion-option value="O">Other</ion-option>
@@ -18,7 +18,7 @@
   </ion-item>
   <ion-item padding-horizontal>
     <ion-label color="dismiss" stacked>Age</ion-label>
-    <ion-select [(ngModel)]="age">
+    <ion-select interface="popover" [(ngModel)]="age">
       <ion-option *ngFor="let ageSelect of _.range(19, 50)" value={{ageSelect}}>{{ageSelect}}</ion-option>
     </ion-select>
   </ion-item>
@@ -31,10 +31,6 @@
   <ion-item padding-horizontal>
     <ion-label color="dismiss" stacked>Password</ion-label>
     <ion-input [(ngModel)]="password" type="password"></ion-input>
-  </ion-item>
-  <ion-item padding-horizontal>
-    <ion-label color="dismiss" stacked>Doctor's Referral Code</ion-label>
-    <ion-input [(ngModel)]="referral" type="password"></ion-input>
   </ion-item>
 
   <div padding>

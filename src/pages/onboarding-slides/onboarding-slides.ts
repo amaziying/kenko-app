@@ -11,6 +11,11 @@ export class OnboardingSlidesPage {
 
   slides = [
     {
+      title: 'Healthy eating in the palm of your hands',
+      image: 'assets/imgs/kenko_onboarding.png',
+      description: 'Kenko is the all-in-one solution for meal tracking, personalized eating recommendations, and educational reads to help you keep the risk of diabetes in check.'
+    },
+    {
       title: 'Track your meals',
       image: 'assets/imgs/onboarding_meals.png',
       description: 'The <b>Meals</b> tab allows you to easily log your meals. Tap on a card to begin logging.'

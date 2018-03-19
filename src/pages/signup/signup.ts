@@ -24,7 +24,6 @@ export class SignupPage {
   age: string
   sex: string
   password: string
-  referral: string
   error = {}
 
 

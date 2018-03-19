@@ -11,12 +11,15 @@
   </ion-navbar>
 
 </ion-header>
-<ion-content padding>
+<ion-content padding-horizontal>
   <div padding-horizontal>
-    <h4 class="side-by-side" (click)="showRecommendations = false" [ngClass]="{'selected': !showRecommendations}">Progress</h4>
-    <h4 margin-left class="side-by-side" (click)="showRecommendations = true" [ngClass]="{'selected': showRecommendations}">Recommendations</h4>
+    <h4 class="side-by-side" (click)="toggleTabs()" [ngClass]="{'selected': !showRecommendations}">Progress</h4>
+    <h4 margin-left class="side-by-side" (click)="toggleTabs()" [ngClass]="{'selected': showRecommendations}">Recommendations</h4>
   </div>
-  <div *ngIf="!showRecommendations">
+  <div style="padding-bottom: 20px;" [hidden]="showRecommendations">
+    <div style="margin-top:20px;" padding-horizontal>
+      <h5 style="font-weight: 700">Today</h5>
+    </div>
     <ion-card>
       <ion-card-content style="font-size:14px; padding:0">
         <ng-container *ngFor="let insight of recs.insights">
@@ -24,6 +27,7 @@
             <div style="width: 10px;" item-start>
               <ion-icon style="color:#8ECA68" *ngIf="insight.consumed === insight.expected && insight.category !== 'other'" name="checkmark-circle"></ion-icon>
               <ion-icon style="color:#EE5D5D" *ngIf="insight.consumed > insight.expected && insight.category !== 'other'" name="alert"></ion-icon>
+              <ion-icon style="color:#6096ef" *ngIf="insight.consumed < insight.expected && insight.category !== 'other'" name="timer"></ion-icon>
             </div>
             <div item-start>{{categoryMapping[insight.category]}}</div>
             <div *ngIf="insight.category !== 'other'" item-end>
@@ -36,13 +40,21 @@
         </ng-container>
       </ion-card-content>
     </ion-card>
-    <div padding>
-      Your historical data will be shown here in charts once you've logged more meals!
+    <div style="margin-top:30px;" padding-horizontal>
+      <h5 style="font-weight: 700">Your past 7 days</h5>
+      <div style="position: relative;">
+        <ion-select interface="popover" [(ngModel)]="currentGraphView" (ngModelChange)="regenerateGraph()">
+          <ion-option *ngFor="let dataset of recs.history; let idx = index;" value={{idx}}>
+            {{categoryMapping[dataset.category]}}
+          </ion-option>
+        </ion-select>
+      </div>
+      <canvas #lineCanvas></canvas>
     </div>
   </div>
 
   
-  <div *ngIf="showRecommendations">
+  <div [hidden]="!showRecommendations">
     <div *ngIf="recs.getRecommendation()" padding>
       Based on the meals you have been logging, we have found these recipes you may like below!
     </div>
