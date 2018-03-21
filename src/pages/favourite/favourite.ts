@@ -55,7 +55,9 @@ export class FavouritePage {
     if (!currentDataSet) {
       return
     }
-    this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+
+    setTimeout(() => {
+      this.lineChart = new Chart(this.lineCanvas.nativeElement, {
         type: 'line',
         data: {
           labels: currentDataSet.historicalData.map(data => moment(data.date).format('MMM. D')),
@@ -85,7 +87,9 @@ export class FavouritePage {
             }
           }
         }
-      });
+      }, 500);
+    })
+
   }
 
   toListSentence(strings) {
